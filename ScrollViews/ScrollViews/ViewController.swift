@@ -10,48 +10,36 @@ import UIKit
 
 class ViewController: UIViewController,UIScrollViewDelegate{
     
-    @IBOutlet var scrollView:UIScrollView!
-    var imageView:UIImageView!
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // 1
-        let image = UIImage(named:"photo1.png")
-        imageView = UIImageView(image:image)
-        imageView.frame = CGRect(origin:CGPoint(x:0,y:0),size:(image?.size)!)
+        let scrollView = UIScrollView()
+        scrollView.minimumZoomScale = 0.1
+        scrollView.maximumZoomScale = 3
+        scrollView.delegate = self
+        scrollView.frame = self.view.bounds
+        let imageView = UIImageView(image:UIImage(named:"photo1.png"))
+        scrollView.contentSize = imageView.bounds.size
         scrollView.addSubview(imageView)
-        
-        // 2
-        scrollView.contentSize = (image?.size)!
-        
-        // 3
-        let doubleTapRecognizer = UITapGestureRecognizer(target:self,action:Selector(("scrollViewDoubleTapped:")))
-        doubleTapRecognizer.numberOfTapsRequired = 2
-        doubleTapRecognizer.numberOfTapsRequired = 1
-        scrollView.addGestureRecognizer(doubleTapRecognizer)
-        
-        // 4
-        let scrollViewFrame = scrollView.frame
-        let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
-        let scaleHeight = scrollViewFrame.size.height/scrollView.contentSize.height
-        let minScale = min(scaleWidth,scaleHeight)
-        scrollView.minimumZoomScale = minScale
-        
-        // 5
-        scrollView.maximumZoomScale = 1.0
-        scrollView.zoomScale = minScale
-        
-        // 6
-        centerScrollViewContents()
+        self.view.addSubview(scrollView)
+    }
+
+    // MARK: scrollView Event
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("x:\(scrollView.contentOffset.x) y:\(scrollView.contentOffset.y)")
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        for subView :AnyObject in scrollView.subviews {
+            if subView.isKind(of: UIImageView.self){
+                return subView as? UIView
+            }
+        }
+        return nil
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
