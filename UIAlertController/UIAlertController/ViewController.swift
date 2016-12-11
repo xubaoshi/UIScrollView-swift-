@@ -56,6 +56,8 @@ class ViewController: UIViewController {
         self.present(alertTextViewController, animated: true, completion: nil)
     }
     
+    // MARK:ACTION-SHEET
+    
     func alertTextFieldChange(notification:NSNotification){
         let currentController = self.presentedViewController as! UIAlertController?
         if(currentController != nil){
