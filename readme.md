@@ -68,6 +68,162 @@
 
 
 ### GCD ###
+苹果提出的更加有效的利用多核CPU的技术，线程自动管理如：创建线程、任务调度、销毁线程等，使用更加方便和灵活。<br>
+
+#### 简单使用 ####
+同步及异步任务：<br>
+穿行及并行：<br>
+
+	// dispatch_get_main_queue & dispatch_get_global_queue
+	// oc
+	 -(void) clickGCD {
+		NSLog(@"执行GCD");
+		dispatch_async(dispatch_get_global_queue(0,0),^{
+			// 执行耗时任务(代码忽略)
+			NSLog(@"start task 1");
+			dispatch_async(dispatch_get_main_queue(),^{
+				// 回到主线程刷新UI
+				NSLog(@"刷新UI");
+			})
+		})
+	}
+
+![](http://i.imgur.com/5EyZgTr.png)
+
+存储数据库及同步图片都可以采取此种方式。
+
+    // dispatch_get_global_queue是一个全局并发的queue
+
+	dispatch_async(dispatch_get_global_queue(0,0),^{
+			NSLog(@"start task 1");
+			[NSThread sleepForTimeInterval:2];
+			NSLog(@"end task 1");
+	});
+
+	dispatch_async(dispatch_get_global_queue(0,0),^{
+			NSLog(@"start task 2");
+			[NSThread sleepForTimeInterval:2];
+			NSLog(@"end task 2");
+	});
+
+	dispatch_async(dispatch_get_global_queue(0,0),^{
+			NSLog(@"start task 3");
+			[NSThread sleepForTimeInterval:2];
+			NSLog(@"end task 3");
+	});
+
+![](http://i.imgur.com/yT9FSnB.png)
+
+	// 设置线程优先级
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW,0),^{
+			NSLog(@"start task 1");
+			[NSThread sleepForTimeInterval:2];
+			NSLog(@"end task 1");
+	});
+
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGHT,0),^{
+			NSLog(@"start task 1");
+			[NSThread sleepForTimeInterval:2];
+			NSLog(@"end task 1");
+	});
+
+![](http://i.imgur.com/8xJ9UIJ.png)
+
+如果保证执行顺序，需要使用串行执行。
+	
+	// 自定义queue
+	// DISPATCH_QUEUE_SERIAL == NULL
+	dispatch_queue_t queue = dispatch_queue_create("com.test.gcd.queue",NULL);
+	dipatch_async(queue,^{
+		NSLog(@"start task 1");
+		[NSThread sleepForTimeInterval:2];
+		NSLog(@"end task 1");
+	});
+
+	dipatch_async(queue,^{
+		NSLog(@"start task 2");
+		[NSThread sleepForTimeInterval:2];
+		NSLog(@"end task 2");
+	});
+
+	dipatch_async(queue,^{
+		NSLog(@"start task 3");
+		[NSThread sleepForTimeInterval:2];
+		NSLog(@"end task 3");
+	});
+
+线程ID相同即上述代码单线程执行3个任务，没有实现多线程执行条件。
+![](http://i.imgur.com/jmDvSGR.png)
+	
+	// 上段代码创建线程更换参数 DISPATCH_QUEUE_CONCURRENT
+	dispatch_queue_t queue = dispatch_queue_create("com.test.gcd.queue",DISPATCH_QUEUE_CONCURRENT);
+
+
+![](http://i.imgur.com/0W4Dka2.png)
+		
+线程ID不同即上述代码3个线程分别执行3个任务。
+
+#### GCD_Group ####
+多个任务异步处理的时候,有的时候需要告诉程序所有的任务已经执行完毕，当得知所有任务执行完成后会调用回调函数执行其他任务。
+	
+	// 创建并行queue
+	dispatch_queue_t queue = dispatch_queue_t queue = dispatch_queue_create("com.test.gcd.group",DISPATCH_QUEUE_CONCURRENT);
+	
+	dispatch_group_t group = dispatch_group_create();
+	 
+	dispatch_group_async(group,queue, ^{
+		NSLog(@"start task 1");
+		[NSThread sleepForTimeInterval:2];
+		NSLog(@"end task 1");
+	});
+
+	dispatch_group_async(group,queue, ^{
+		NSLog(@"start task 2");
+		[NSThread sleepForTimeInterval:2];
+		NSLog(@"end task 2");
+	});
+
+	dispatch_group_async(group,queue, ^{
+		NSLog(@"start task 3");
+		[NSThread sleepForTimeInterval:2];
+		NSLog(@"end task 3");
+	});
+	
+	dispatch_group_notify(group,queue,^{
+		NSLog(@"All tasks over");
+	});
+	
+	// 回到主线程执行回调
+	dispatch_group_notify(group,queue,^{
+		NSLog(@"All tasks over");
+		dispatch_async(			NSLog(@"回到主线程刷新UI");
+		});
+	});
+
+
+![](http://i.imgur.com/hyN5hVk.png)
+
+回调最后一个线程task3所对应的线程，没有单独开辟一个线程去执行回调任务，如果希望回到主线程执行调用回到主线程所对应的方法。
+	
+	// 异步请求 dispatch_group_enter 及 dipatch_group_leave 同时出现
+	dispatch_group_t group = dispatch_group_create();
+	dispatch_group_enter(group);
+	[self sendRequest:^{
+		NSLog(@"request done!")
+		dipatch_group_leave(group)
+	}];
+
+#### GCD 单例模式及延迟执行 ####
+	
+	 + (instancetype) instance{
+		 static dispatch_once_t onceToken;
+		 static TestSingle *ins = nil;
+		 dispatch_once(&onceToken,^{
+			
+		 })
+	 } 
+
+单例模式执行完之后，如果不销毁一直会存在会内存中被
 ### NSOperation ###
 
 
