@@ -214,18 +214,121 @@
 	}];
 
 #### GCD 单例模式及延迟执行 ####
-	
+**单例模式**
+
 	 + (instancetype) instance{
 		 static dispatch_once_t onceToken;
 		 static TestSingle *ins = nil;
 		 dispatch_once(&onceToken,^{
-			
+			NSLog(@"init the TestSingle")
+			ins = [[TestSingle alloc] init];
 		 })
-	 } 
+		return ins;
+	 }
 
-单例模式执行完之后，如果不销毁一直会存在会内存中被
+		
+	// 使用
+	  -（void）clickSingle {
+		TestSingle *single = [TestSingle instance];
+		NSLog(@"%@",single);
+	  }
+
+![](http://i.imgur.com/VCsM0Ll.jpg)
+
+执行多次clickSingle方法后“init the TestSingle” 只执行一次，即单例模式执行完之后，如果不销毁一直会存在会内存中。<br>
+**延迟执行**
+	
+	// 使用
+	NSLog(@"----begin----")
+	  -（void）clickSingle {
+		// DISPATCH_TIME_NOW（当前时间） NSEC_PER_SEC（每秒） dispatch_get_main_queue（在主线程中执行）
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(2*NSEC_PER_SEC)),dispatch_get_main_queue(),^{
+			NSLog(@"delay excute");
+		})
+	  }
+
+![](http://i.imgur.com/jaInH4J.png)
+
+弊端是方法一旦执行不能够取消掉。
+
 ### NSOperation ###
+NSOperation是GCD的一种封装，封装了实例执行的操作及数据，能够以并发或非并发的方式执行操作。
+通过使用NSOperation子类来调用其内部的方法。<br>
+1.NSInvocationOperation & NSBlockOperation (自带方法)<br>
+2.自定义类继承NSOperation<br>
+**NSInvocationOperation**<br>
 
+		// 非并发执行
+		-(void) operationTest {
+			NSInvocationOperation *invocationOper = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(invocationAction) object:nil]; 
+			[invocationOper start];
+		}
+
+		// 并发执行
+		-(void) operationTest {
+			NSLog(@"main thread");
+			dispatch_async(dispatch_get_global_queue(0,0),^{
+				NSInvocationOperation *invocationOper = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(invocationAction) object:nil];
+				[invocationOper start];
+			})
+			NSLog(@"end");
+			
+		}
+		
+		-(void) invocationAction {
+			for (int i=0;i<3;i++){
+				NSLog(@"invocation %d",i);
+				[NSTread sleepForTimeInterval：1]；
+			}
+		}
+
+非并发执行<br>
+![](http://i.imgur.com/af62loo.jpg)<br>
+并发执行<br>
+![](http://i.imgur.com/lS4g0HR.jpg)<br>
+
+**NSBlockOperation**<br>
+
+		-(void) operationTest {
+			NSLog(@"main thread");
+			dispatch_async(dispatch_get_global_queue(0,0),^{
+				
+				NSBlockOperation *blockOper = [NSBlockOperation blockOperationWithBlock:^{
+					for (int i=0;i<3;i++){
+						NSLog(@"invocation %d",i);
+						[NSTread sleepForTimeInterval：1]；
+					}
+				}];
+		
+				[blockOper start];
+			})
+		}
+		
+![](http://i.imgur.com/6jMZAgP.png)
+
+**相关概念：**<br>
+NSOperationQueue 可以理解成线程池，创建线程后可以将线程添加至队列中。
+	
+	a.addOperation // 添加至线程池
+	b.setMaxCouncurrentOperationCount // 设置最大并发数
+
+	// 创建NSOperationQueue
+	@property (nonatomic,strong) NSOperationQueue *operQueue;
+
+	if(!self.operQueue) {
+		self.operQueue = [[NSOperationQueue alloc] init];
+	}
+	
+	// 上述代码创建的线程
+	[self.operQueue addOperation:blockOper]；
+
+
+状态<br>
+ready、cancelled、executing、finished、asynchronous
+
+一旦线程执行无法cancelled，可以在代码内部判断<br>
+
+依赖-addDependency
 
 ## 线程锁 ## 
 
