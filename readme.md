@@ -1,13 +1,14 @@
-# IOS知识总结 #
+# IOS线程相关知识总结 #
 
-## 1.线程 ##
+
+## 线程 ##
 1. pThread
 2. NSThread
 3. GCD
 4. NSOperation
 
 ### pThread ###
-基于c语言框架，多平台
+基于c++框架，多平台
 	
 	// oc 
 	pthread_t pthread;
@@ -34,8 +35,8 @@
 	// 开始线程
 	[thread1 start];
 	
-	// 2.通过detachNewThtreadSelecor 方式创建线程
-	[NSThread detachNewThtreadSelecor:@selector(runThread) toTarget:self withObject:nil]; 
+	// 2.通过detachNewThreadSelecor 方式创建线程
+	[NSThread detachNewThreadSelecor:@selector(runThread) toTarget:self withObject:nil]; 
 
 	// 3.通过performSelectorInBackground 方式创建线程
 	[self performSelectorInBackground:@selector(runThread) withObject:nil];
@@ -70,9 +71,9 @@
 ### GCD ###
 苹果提出的更加有效的利用多核CPU的技术，线程自动管理如：创建线程、任务调度、销毁线程等，使用更加方便和灵活。<br>
 
-#### 简单使用 ####
+#### 简单使用方法 ####
 同步及异步任务：<br>
-穿行及并行：<br>
+串行及并行任务：<br>
 
 	// dispatch_get_main_queue & dispatch_get_global_queue
 	// oc
@@ -121,7 +122,7 @@
 			NSLog(@"end task 1");
 	});
 
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGHT,0),^{
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0),^{
 			NSLog(@"start task 1");
 			[NSThread sleepForTimeInterval:2];
 			NSLog(@"end task 1");
@@ -152,7 +153,7 @@
 		NSLog(@"end task 3");
 	});
 
-线程ID相同即上述代码单线程执行3个任务，没有实现多线程执行条件。
+线程ID相同即上述代码单线程执行3个任务，没有实现多线程执行条件。<br>
 ![](http://i.imgur.com/jmDvSGR.png)
 	
 	// 上段代码创建线程更换参数 DISPATCH_QUEUE_CONCURRENT
@@ -196,7 +197,8 @@
 	// 回到主线程执行回调
 	dispatch_group_notify(group,queue,^{
 		NSLog(@"All tasks over");
-		dispatch_async(			NSLog(@"回到主线程刷新UI");
+		dispatch_async(			
+			NSLog(@"回到主线程刷新UI");
 		});
 	});
 
@@ -327,9 +329,64 @@ NSOperationQueue 可以理解成线程池，创建线程后可以将线程添加
 ready、cancelled、executing、finished、asynchronous
 
 一旦线程执行无法cancelled，可以在代码内部判断<br>
-
+	
 依赖-addDependency
 
-## 线程锁 ## 
+	// 创建NSOperationQueue
+	@property (nonatomic,strong) NSOperationQueue *operQueue;
 
+	NSBlockOperation *customOperA = [NSBlockOperation blockOperationWithBlock:^{
+		for (int i=0;i<3;i++){
+			NSLog(@"OperA %d",i);
+			[NSTread sleepForTimeInterval：1]；
+		}
+	}];
+
+	NSBlockOperation *customOperB = [NSBlockOperation blockOperationWithBlock:^{
+		for (int i=0;i<3;i++){
+			NSLog(@"OperB %d",i);
+			[NSTread sleepForTimeInterval：1]；
+		}
+	}];
+
+	NSBlockOperation *customOperC = [NSBlockOperation blockOperationWithBlock:^{
+		for (int i=0;i<3;i++){
+			NSLog(@"OperC %d",i);
+			[NSTread sleepForTimeInterval：1]；
+		}
+	}];
+
+	NSBlockOperation *customOperD = [NSBlockOperation blockOperationWithBlock:^{
+		for (int i=0;i<3;i++){
+			NSLog(@"OperD %d",i);
+			[NSTread sleepForTimeInterval：1]；
+		}
+	}];
 	
+	// 不要循环依赖
+	[customOperD addDependency:customOperA];
+	[customOperA addDependency:customOperC];
+	[customOperC addDependency:customOperB];
+	
+	// 添加线程池
+	[self.operQueue addOperation:customOperA];
+	[self.operQueue addOperation:customOperB];
+	[self.operQueue addOperation:customOperC];
+	[self.operQueue addOperation:customOperD];
+
+![](http://i.imgur.com/Smuw8gv.jpg)
+
+### 线程锁 ###
+	
+	// synchronized oc
+	@synchronized(self) {
+		// 执行代码段
+	}
+
+	// NSCondition oc
+	@property (nonatomic,strong) NSCondition *condition
+	self.condition = [[NSCondition alloc] init];
+	
+	[self.condition lock];
+	// 执行代码段
+	[self.condition unlock];
