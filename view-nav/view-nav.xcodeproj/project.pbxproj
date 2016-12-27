@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE2095F41E128866005F0AD8 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2095F31E128866005F0AD8 /* MenuViewController.swift */; };
 		CE831BD51E0A95E4009B0240 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE831BD41E0A95E4009B0240 /* AppDelegate.swift */; };
 		CE831BD71E0A95E4009B0240 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE831BD61E0A95E4009B0240 /* PreviewController.swift */; };
 		CE831BDA1E0A95E4009B0240 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE831BD81E0A95E4009B0240 /* Main.storyboard */; };
@@ -15,8 +16,12 @@
 		CE831BEA1E0A95E4009B0240 /* view_navTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE831BE91E0A95E4009B0240 /* view_navTests.swift */; };
 		CE831BF51E0A95E4009B0240 /* view_navUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE831BF41E0A95E4009B0240 /* view_navUITests.swift */; };
 		CE831C051E0AA36F009B0240 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE831C041E0AA36F009B0240 /* TabViewController.swift */; };
-		CE831C081E0AA610009B0240 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE831C071E0AA610009B0240 /* HomeViewController.swift */; };
+		CE831C081E0AA610009B0240 /* HomeNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE831C071E0AA610009B0240 /* HomeNavViewController.swift */; };
 		CE831C0A1E0AA680009B0240 /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE831C091E0AA680009B0240 /* TodoViewController.swift */; };
+		CE831C101E0D12E9009B0240 /* TodoNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE831C0F1E0D12E9009B0240 /* TodoNavViewController.swift */; };
+		CE831C121E10F522009B0240 /* PreviewNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE831C111E10F522009B0240 /* PreviewNavViewController.swift */; };
+		CE831C141E10F73E009B0240 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE831C131E10F73E009B0240 /* HomeViewController.swift */; };
+		CE98E9AD1E1139F9004C304A /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE98E9AC1E1139F9004C304A /* HomeTableViewController.swift */; };
 		D8834E3A2F49A0C8AFB5CBBE /* Pods_view_nav.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A3CB56D2C3B61454CC2C7F8 /* Pods_view_nav.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +46,7 @@
 		8A3CB56D2C3B61454CC2C7F8 /* Pods_view_nav.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_view_nav.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F2383015648D3F72868E0CF /* Pods-view-nav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-view-nav.release.xcconfig"; path = "Pods/Target Support Files/Pods-view-nav/Pods-view-nav.release.xcconfig"; sourceTree = "<group>"; };
 		CD483AD32953E18617459488 /* Pods-view-nav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-view-nav.debug.xcconfig"; path = "Pods/Target Support Files/Pods-view-nav/Pods-view-nav.debug.xcconfig"; sourceTree = "<group>"; };
+		CE2095F31E128866005F0AD8 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		CE831BD11E0A95E4009B0240 /* view-nav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "view-nav.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE831BD41E0A95E4009B0240 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE831BD61E0A95E4009B0240 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
@@ -55,8 +61,12 @@
 		CE831BF41E0A95E4009B0240 /* view_navUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = view_navUITests.swift; sourceTree = "<group>"; };
 		CE831BF61E0A95E4009B0240 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE831C041E0AA36F009B0240 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
-		CE831C071E0AA610009B0240 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CE831C071E0AA610009B0240 /* HomeNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNavViewController.swift; sourceTree = "<group>"; };
 		CE831C091E0AA680009B0240 /* TodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
+		CE831C0F1E0D12E9009B0240 /* TodoNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoNavViewController.swift; sourceTree = "<group>"; };
+		CE831C111E10F522009B0240 /* PreviewNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewNavViewController.swift; sourceTree = "<group>"; };
+		CE831C131E10F73E009B0240 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CE98E9AC1E1139F9004C304A /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,9 +130,14 @@
 			isa = PBXGroup;
 			children = (
 				CE831BD41E0A95E4009B0240 /* AppDelegate.swift */,
+				CE98E9AC1E1139F9004C304A /* HomeTableViewController.swift */,
 				CE831BD61E0A95E4009B0240 /* PreviewController.swift */,
+				CE831C131E10F73E009B0240 /* HomeViewController.swift */,
+				CE2095F31E128866005F0AD8 /* MenuViewController.swift */,
 				CE831BD81E0A95E4009B0240 /* Main.storyboard */,
-				CE831C071E0AA610009B0240 /* HomeViewController.swift */,
+				CE831C071E0AA610009B0240 /* HomeNavViewController.swift */,
+				CE831C111E10F522009B0240 /* PreviewNavViewController.swift */,
+				CE831C0F1E0D12E9009B0240 /* TodoNavViewController.swift */,
 				CE831BDB1E0A95E4009B0240 /* Assets.xcassets */,
 				CE831BDD1E0A95E4009B0240 /* LaunchScreen.storyboard */,
 				CE831C091E0AA680009B0240 /* TodoViewController.swift */,
@@ -344,10 +359,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE831C0A1E0AA680009B0240 /* TodoViewController.swift in Sources */,
+				CE2095F41E128866005F0AD8 /* MenuViewController.swift in Sources */,
+				CE831C101E0D12E9009B0240 /* TodoNavViewController.swift in Sources */,
 				CE831BD71E0A95E4009B0240 /* PreviewController.swift in Sources */,
+				CE831C141E10F73E009B0240 /* HomeViewController.swift in Sources */,
 				CE831C051E0AA36F009B0240 /* TabViewController.swift in Sources */,
-				CE831C081E0AA610009B0240 /* HomeViewController.swift in Sources */,
+				CE831C081E0AA610009B0240 /* HomeNavViewController.swift in Sources */,
+				CE98E9AD1E1139F9004C304A /* HomeTableViewController.swift in Sources */,
 				CE831BD51E0A95E4009B0240 /* AppDelegate.swift in Sources */,
+				CE831C121E10F522009B0240 /* PreviewNavViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

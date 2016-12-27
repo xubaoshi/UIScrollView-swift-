@@ -1,25 +1,46 @@
 //
-//  NavViewController.swift
+//  HomeViewController.swift
 //  view-nav
 //
-//  Created by user on 16/12/21.
+//  Created by user on 16/12/26.
 //  Copyright © 2016年 user. All rights reserved.
 //
 
 import UIKit
+import SlideMenuControllerSwift
 
-class HomeViewController: UINavigationController {
-
+class HomeViewController: SlideMenuController {
+    
+    let sb = UIStoryboard(name: "Main", bundle: nil)
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        SlideMenuOptions.contentViewScale = 1
+    }
+    
+    override func awakeFromNib() {
+        if let controller = self.storyboard?.instantiateViewController(withIdentifier: "home-nav"){
+            self.mainViewController = controller
+        }
+        
+        if let controller = self.storyboard?.instantiateViewController(withIdentifier: "menu"){
+            self.leftViewController = controller
+        }
+        super.awakeFromNib()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.dismiss(animated: true, completion: ({
+            super.viewWillDisappear(true)
+        }))
+    }
+    
     
 
     /*

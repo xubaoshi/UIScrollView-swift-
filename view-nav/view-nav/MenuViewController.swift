@@ -1,36 +1,25 @@
 //
-//  TodoViewController.swift
+//  MenuViewController.swift
 //  view-nav
 //
-//  Created by user on 16/12/21.
+//  Created by user on 16/12/27.
 //  Copyright © 2016年 user. All rights reserved.
 //
 
 import UIKit
 
-class TodoViewController: UIViewController {
+class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("todo")
 
-//        let attributes = [NSFontAttributeName: UIFont.fontAwesome(ofSize: 20)] as [String: Any]
-//        
-//        self.tabBarItem.setTitleTextAttributes(attributes, for: .normal)
-//        self.tabBarItem.title = String.fontAwesomeIcon(name: .github)
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.dismiss(animated: true, completion: ({
-            super.viewWillDisappear(true)
-        }))
-    }
-    
     
 
     /*

@@ -7,13 +7,25 @@
 //
 
 import UIKit
+import FontAwesome_swift
 
 class TabViewController: UITabBarController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let attributes = [NSFontAttributeName: UIFont.fontAwesome(ofSize: 25)] as [String: Any]
+        
+        self.tabBar.items?[0].setTitleTextAttributes(attributes, for: .normal)
+        self.tabBar.items?[0].title = String.fontAwesomeIcon(name: .home)
+        self.tabBar.items?[1].setTitleTextAttributes(attributes, for: .normal)
+        self.tabBar.items?[1].title = String.fontAwesomeIcon(name: .diamond)
+        self.tabBar.items?[2].setTitleTextAttributes(attributes, for: .normal)
+        self.tabBar.items?[2].title = String.fontAwesomeIcon(name: .github)
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        print("tab chnaged")
     }
 
     override func didReceiveMemoryWarning() {

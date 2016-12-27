@@ -12,13 +12,23 @@ class PreviewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        print("preview")
+//        let attributes = [NSFontAttributeName: UIFont.fontAwesome(ofSize: 20)] as [String: Any]
+//        self.tabBarItem.setTitleTextAttributes(attributes, for: .normal)
+//        self.tabBarItem.title = String.fontAwesomeIcon(name: .gear)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.dismiss(animated: true, completion: ({
+            super.viewWillDisappear(true)
+        }))
+    }
+    
 
 
 }

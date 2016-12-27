@@ -1,5 +1,5 @@
 //
-//  TodoViewController.swift
+//  NavViewController.swift
 //  view-nav
 //
 //  Created by user on 16/12/21.
@@ -8,29 +8,19 @@
 
 import UIKit
 
-class TodoViewController: UIViewController {
+class HomeNavViewController: UINavigationController {
 
+    let home = HomeViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("todo")
-
-//        let attributes = [NSFontAttributeName: UIFont.fontAwesome(ofSize: 20)] as [String: Any]
-//        
-//        self.tabBarItem.setTitleTextAttributes(attributes, for: .normal)
-//        self.tabBarItem.title = String.fontAwesomeIcon(name: .github)
+//        self.navigationController?.pushViewController(home, animated: true)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.dismiss(animated: true, completion: ({
-            super.viewWillDisappear(true)
-        }))
-    }
-    
     
 
     /*

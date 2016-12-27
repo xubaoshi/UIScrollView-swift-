@@ -78,8 +78,8 @@
                     </tabBar>
                     <connections>
                         <outlet property="tab" destination="C4N-4R-yLj" id="GkQ-Xh-7Kt"/>
-                        <segue destination="S1B-50-xpN" kind="relationship" relationship="viewControllers" id="s8a-g8-jAb"/>
                         <segue destination="eHu-Az-9s2" kind="relationship" relationship="viewControllers" id="Tvd-SM-hpa"/>
+                        <segue destination="S1B-50-xpN" kind="relationship" relationship="viewControllers" id="s8a-g8-jAb"/>
                         <segue destination="qwh-Ia-jF8" kind="relationship" relationship="viewControllers" id="D7q-zb-oab"/>
                     </connections>
                 </tabBarController>
