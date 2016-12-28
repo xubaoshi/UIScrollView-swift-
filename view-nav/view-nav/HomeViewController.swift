@@ -17,6 +17,7 @@ class HomeViewController: SlideMenuController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SlideMenuOptions.contentViewScale = 1
+        SlideMenuOptions.leftViewWidth = 360
     }
     
     override func awakeFromNib() {

@@ -8,14 +8,30 @@
 
 import UIKit
 
-class MenuViewController: UIViewController {
+class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
+    @IBOutlet weak var menuTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.menuTable.delegate = self
+        self.menuTable.dataSource = self
     }
-
+    
+    // MARK:tableView
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
+        cell.imageView?.image
+         = UIImage.fontAwesomeIcon(name: .user, textColor: UIColor.white, size: CGSize(width: 50, height: 50))
+        cell.textLabel?.text = "xubaoshi@made-in-china.com"
+        return cell
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

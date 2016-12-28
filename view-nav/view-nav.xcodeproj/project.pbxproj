@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CE2095F41E128866005F0AD8 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2095F31E128866005F0AD8 /* MenuViewController.swift */; };
+		CE2095F61E135C5C005F0AD8 /* HomeTableCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2095F51E135C5C005F0AD8 /* HomeTableCellTableViewCell.swift */; };
+		CE2095F81E135CD9005F0AD8 /* MenuTableCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2095F71E135CD9005F0AD8 /* MenuTableCellTableViewCell.swift */; };
 		CE831BD51E0A95E4009B0240 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE831BD41E0A95E4009B0240 /* AppDelegate.swift */; };
 		CE831BD71E0A95E4009B0240 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE831BD61E0A95E4009B0240 /* PreviewController.swift */; };
 		CE831BDA1E0A95E4009B0240 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE831BD81E0A95E4009B0240 /* Main.storyboard */; };
@@ -47,6 +49,8 @@
 		8F2383015648D3F72868E0CF /* Pods-view-nav.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-view-nav.release.xcconfig"; path = "Pods/Target Support Files/Pods-view-nav/Pods-view-nav.release.xcconfig"; sourceTree = "<group>"; };
 		CD483AD32953E18617459488 /* Pods-view-nav.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-view-nav.debug.xcconfig"; path = "Pods/Target Support Files/Pods-view-nav/Pods-view-nav.debug.xcconfig"; sourceTree = "<group>"; };
 		CE2095F31E128866005F0AD8 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		CE2095F51E135C5C005F0AD8 /* HomeTableCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableCellTableViewCell.swift; sourceTree = "<group>"; };
+		CE2095F71E135CD9005F0AD8 /* MenuTableCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableCellTableViewCell.swift; sourceTree = "<group>"; };
 		CE831BD11E0A95E4009B0240 /* view-nav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "view-nav.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE831BD41E0A95E4009B0240 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE831BD61E0A95E4009B0240 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 				CE98E9AC1E1139F9004C304A /* HomeTableViewController.swift */,
 				CE831BD61E0A95E4009B0240 /* PreviewController.swift */,
 				CE831C131E10F73E009B0240 /* HomeViewController.swift */,
+				CE2095F51E135C5C005F0AD8 /* HomeTableCellTableViewCell.swift */,
+				CE2095F71E135CD9005F0AD8 /* MenuTableCellTableViewCell.swift */,
 				CE2095F31E128866005F0AD8 /* MenuViewController.swift */,
 				CE831BD81E0A95E4009B0240 /* Main.storyboard */,
 				CE831C071E0AA610009B0240 /* HomeNavViewController.swift */,
@@ -364,10 +370,12 @@
 				CE831BD71E0A95E4009B0240 /* PreviewController.swift in Sources */,
 				CE831C141E10F73E009B0240 /* HomeViewController.swift in Sources */,
 				CE831C051E0AA36F009B0240 /* TabViewController.swift in Sources */,
+				CE2095F81E135CD9005F0AD8 /* MenuTableCellTableViewCell.swift in Sources */,
 				CE831C081E0AA610009B0240 /* HomeNavViewController.swift in Sources */,
 				CE98E9AD1E1139F9004C304A /* HomeTableViewController.swift in Sources */,
 				CE831BD51E0A95E4009B0240 /* AppDelegate.swift in Sources */,
 				CE831C121E10F522009B0240 /* PreviewNavViewController.swift in Sources */,
+				CE2095F61E135C5C005F0AD8 /* HomeTableCellTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

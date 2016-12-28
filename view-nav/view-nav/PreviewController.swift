@@ -13,9 +13,6 @@ class PreviewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("preview")
-//        let attributes = [NSFontAttributeName: UIFont.fontAwesome(ofSize: 20)] as [String: Any]
-//        self.tabBarItem.setTitleTextAttributes(attributes, for: .normal)
-//        self.tabBarItem.title = String.fontAwesomeIcon(name: .gear)
     }
 
     override func didReceiveMemoryWarning() {
